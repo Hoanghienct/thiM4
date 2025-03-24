@@ -1,0 +1,41 @@
+create database quanlydaodich;
+use quanlydaodich;
+CREATE TABLE khach_hang (
+    ma_khach_hang VARCHAR(10) PRIMARY KEY,
+    ten_khach_hang VARCHAR(100) NOT NULL,
+    so_dien_thoai VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+CREATE TABLE giao_dich (
+    ma_giao_dich VARCHAR(10) PRIMARY KEY,
+    ma_khach_hang VARCHAR(10) NOT NULL,
+    ngay_giao_dich DATE NOT NULL,
+    loai_dich_vu VARCHAR(20) NOT NULL,
+    don_gia DECIMAL(15,2) NOT NULL,
+    dien_tich DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (ma_khach_hang) REFERENCES khach_hang(ma_khach_hang)
+);
+-- Thêm dữ liệu vào bảng khach_hang
+INSERT INTO khach_hang (ma_khach_hang, ten_khach_hang, so_dien_thoai, email) VALUES
+('KH001', 'Nguyen Van A', '0901234567', 'nguyenvana@gmail.com'),
+('KH002', 'Tran Thi B', '0912345678', 'tranthib@gmail.com');
+
+-- Thêm dữ liệu vào bảng giao_dich
+INSERT INTO giao_dich (ma_giao_dich, ma_khach_hang, ngay_giao_dich, loai_dich_vu, don_gia, dien_tich) VALUES
+('MGD-0001', 'KH001', '2024-04-01', 'Đất', 1000000.00, 50.00),
+('MGD-0002', 'KH002', '2024-05-01', 'Nhà và đất', 2000000.00, 80.00);
+INSERT INTO khach_hang (ma_khach_hang, ten_khach_hang, so_dien_thoai, email) VALUES
+
+('KH003', 'Le Van Cuong', '0923456789', 'levancuong@gmail.com'),
+('KH004', 'Pham Thi Dung', '0934567890', 'phamthidung@gmail.com'),
+('KH005', 'Hoang Van Em', '0945678901', 'hoangvanem@gmail.com');
+INSERT INTO giao_dich (ma_giao_dich, ma_khach_hang, ngay_giao_dich, loai_dich_vu, don_gia, dien_tich) VALUES
+
+('MGD-0003', 'KH002', '2024-06-01', 'Đất', 1500000.00, 60.00),
+('MGD-0004', 'KH002', '2024-07-01', 'Nhà và đất', 2500000.00, 100.00),
+
+('MGD-0006', 'KH003', '2024-09-01', 'Nhà và đất', 2200000.00, 90.00),
+('MGD-0007', 'KH004', '2024-10-01', 'Đất', 1800000.00, 55.00),
+('MGD-0008', 'KH004', '2024-11-01', 'Nhà và đất', 2800000.00, 110.00),
+('MGD-0009', 'KH005', '2024-12-01', 'Đất', 1300000.00, 65.00),
+('MGD-0010', 'KH005', '2024-01-01', 'Nhà và đất', 2300000.00, 95.00);
