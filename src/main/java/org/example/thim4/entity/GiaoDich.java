@@ -19,7 +19,7 @@ public class GiaoDich {
     private KhachHang khachHang;
 
     @NotNull(message = "Ngày giao dịch không được để trống")
-    @Future(message = "Ngày giao dịch phải lớn hơn ngày hiện tại")
+    @PastOrPresent(message = "Ngày giao dịch phải nhỏ hơn hoặc bằng ngày hiện tại") // Sửa từ @Future thành @PastOrPresent
     private LocalDate ngayGiaoDich;
 
     @NotBlank(message = "Loại dịch vụ không được để trống")
