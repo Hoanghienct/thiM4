@@ -3,52 +3,74 @@
 <head>
   <title>Thêm mới giao dịch</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .form-label { font-weight: bold; }
+    .error { color: red; font-size: 0.9em; }
+  </style>
 </head>
 <body>
 <div class="container mt-5">
   <h1 class="mb-4">Thêm mới giao dịch</h1>
   <form th:action="@{/giao-dich/new}" th:object="${giaoDich}" method="post">
+    <!-- Mã giao dịch -->
     <div class="mb-3">
-      <label class="form-label">Mã giao dịch:</label>
+      <label class="form-label">Mã giao dịch</label>
       <input type="text" th:field="*{maGiaoDich}" class="form-control"/>
-      <div class="text-danger" th:errors="*{maGiaoDich}"></div>
+      <div class="error" th:errors="*{maGiaoDich}"></div>
     </div>
+
+    <!-- Tên khách hàng -->
     <div class="mb-3">
-      <label class="form-label">Khách hàng:</label>
+      <label class="form-label">Tên khách hàng</label>
       <select th:field="*{khachHang}" class="form-select">
         <option value="">Chọn khách hàng</option>
         <option th:each="kh : ${khachHangList}"
                 th:value="${kh.maKhachHang}"
                 th:text="${kh.tenKhachHang}"></option>
       </select>
-      <div class="text-danger" th:errors="*{khachHang}"></div>
+      <div class="error" th:errors="*{khachHang}"></div>
     </div>
+
+    <!-- Loại bất động sản -->
     <div class="mb-3">
-      <label class="form-label">Loại dịch vụ:</label>
-      <select th:field="*{loaiDichVu}" class="form-select">
-        <option value="">Chọn loại dịch vụ</option>
-        <option value="Đất">Đất</option>
-        <option value="Nhà và đất">Nhà và đất</option>
-      </select>
-      <div class="text-danger" th:errors="*{loaiDichVu}"></div>
+      <label class="form-label">Loại bất động sản</label>
+      <div class="form-check form-check-inline">
+        <input type="radio" th:field="*{loaiDichVu}" value="Đất" class="form-check-input" id="dat"/>
+        <label class="form-check-label" for="dat">Đất</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" th:field="*{loaiDichVu}" value="Nhà đất" class="form-check-input" id="nhaDat"/>
+        <label class="form-check-label" for="nhaDat">Nhà đất</label>
+      </div>
+      <div class="error" th:errors="*{loaiDichVu}"></div>
     </div>
+
+    <!-- Ngày giao dịch -->
     <div class="mb-3">
-      <label class="form-label">Ngày giao dịch:</label>
+      <label class="form-label">Ngày giao dịch</label>
       <input type="date" th:field="*{ngayGiaoDich}" class="form-control"/>
-      <div class="text-danger" th:errors="*{ngayGiaoDich}"></div>
+      <div class="error" th:errors="*{ngayGiaoDich}"></div>
     </div>
+
+    <!-- Đơn giá -->
     <div class="mb-3">
-      <label class="form-label">Đơn giá (VND/m²):</label>
+      <label class="form-label">Đơn giá (VND)</label>
       <input type="number" th:field="*{donGia}" step="0.01" class="form-control"/>
-      <div class="text-danger" th:errors="*{donGia}"></div>
+      <div class="error" th:errors="*{donGia}"></div>
     </div>
+
+    <!-- Diện tích -->
     <div class="mb-3">
-      <label class="form-label">Diện tích (m²):</label>
+      <label class="form-label">Diện tích (m²)</label>
       <input type="number" th:field="*{dienTich}" step="0.01" class="form-control"/>
-      <div class="text-danger" th:errors="*{dienTich}"></div>
+      <div class="error" th:errors="*{dienTich}"></div>
     </div>
-    <button type="submit" class="btn btn-primary">Thêm mới</button>
-    <a th:href="@{/giao-dich}" class="btn btn-secondary">Quay lại</a>
+
+    <!-- Nút Lưu và Hủy -->
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Lưu</button>
+      <a th:href="@{/giao-dich}" class="btn btn-secondary">Hủy</a>
+    </div>
   </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
