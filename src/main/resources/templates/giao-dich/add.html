@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Thêm mới giao dịch</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="mb-4">Thêm mới giao dịch</h1>
+  <form th:action="@{/giao-dich/new}" th:object="${giaoDich}" method="post">
+    <div class="mb-3">
+      <label class="form-label">Mã giao dịch:</label>
+      <input type="text" th:field="*{maGiaoDich}" class="form-control"/>
+      <div class="text-danger" th:errors="*{maGiaoDich}"></div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Khách hàng:</label>
+      <select th:field="*{khachHang}" class="form-select">
+        <option value="">Chọn khách hàng</option>
+        <option th:each="kh : ${khachHangList}"
+                th:value="${kh.maKhachHang}"
+                th:text="${kh.tenKhachHang}"></option>
+      </select>
+      <div class="text-danger" th:errors="*{khachHang}"></div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Loại dịch vụ:</label>
+      <select th:field="*{loaiDichVu}" class="form-select">
+        <option value="">Chọn loại dịch vụ</option>
+        <option value="Đất">Đất</option>
+        <option value="Nhà và đất">Nhà và đất</option>
+      </select>
+      <div class="text-danger" th:errors="*{loaiDichVu}"></div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Ngày giao dịch:</label>
+      <input type="date" th:field="*{ngayGiaoDich}" class="form-control"/>
+      <div class="text-danger" th:errors="*{ngayGiaoDich}"></div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Đơn giá (VND/m²):</label>
+      <input type="number" th:field="*{donGia}" step="0.01" class="form-control"/>
+      <div class="text-danger" th:errors="*{donGia}"></div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Diện tích (m²):</label>
+      <input type="number" th:field="*{dienTich}" step="0.01" class="form-control"/>
+      <div class="text-danger" th:errors="*{dienTich}"></div>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm mới</button>
+    <a th:href="@{/giao-dich}" class="btn btn-secondary">Quay lại</a>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
